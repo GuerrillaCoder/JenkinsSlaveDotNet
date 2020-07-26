@@ -1,4 +1,14 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+FROM jenkins/jnlp-slave
+
+USER 0
+
+#.net
+RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+    && dpkg -i packages-microsoft-prod.deb \
+    && apt-get update \
+    && apt-get install -y apt-transport-https apt-utils \
+    && apt-get update \
+    && apt-get install -y dotnet-sdk-3.1 aspnetcore-runtime-3.1
 
 # Docker
 RUN apt-get update \
@@ -14,5 +24,7 @@ RUN apt-get update \
 # Node
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get install -y nodejs 
+
+USER 1000
 
 ENTRYPOINT tail -f /dev/null
