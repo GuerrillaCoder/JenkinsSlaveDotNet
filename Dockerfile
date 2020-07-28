@@ -1,6 +1,9 @@
 FROM jenkins/jnlp-slave
 
 USER 0
+ARG JENKINSUID=1000
+ARG JENKINSGID=1000
+ARG DOCKERGID=998
 
 #.net
 RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
@@ -24,6 +27,10 @@ RUN apt-get update \
 # Node
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get install -y nodejs 
+
+# Setup users and groups
+RUN addgroup --gid ${DOCKERGID} docker
+RUN usermod -aG docker jenkins
 
 USER 1000
 
