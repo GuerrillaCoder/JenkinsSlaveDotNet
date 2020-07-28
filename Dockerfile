@@ -34,4 +34,6 @@ RUN usermod -aG docker jenkins
 
 USER 1000
 
+RUN IMAGE_VERSION=1
+
 ENTRYPOINT tail -f /dev/null
