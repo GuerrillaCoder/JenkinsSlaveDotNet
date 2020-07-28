@@ -1,4 +1,4 @@
-FROM jenkins/jnlp-slave
+FROM jenkins/agent 
 
 USER 0
 ARG JENKINSUID=1000
@@ -36,4 +36,4 @@ RUN echo 'IMAGE_VERSION=1' >> /etc/environment
 
 USER 1000
 
-ENTRYPOINT tail -f /dev/null
+#ENTRYPOINT tail -f /dev/null
