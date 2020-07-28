@@ -34,6 +34,6 @@ RUN usermod -aG docker jenkins
 
 USER 1000
 
-RUN IMAGE_VERSION=1
+RUN echo 'IMAGE_VERSION=1' >> /etc/environment
 
-ENTRYPOINT tail -f /dev/null
+#ENTRYPOINT tail -f /dev/null
