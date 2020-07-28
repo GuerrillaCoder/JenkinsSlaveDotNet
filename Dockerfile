@@ -32,8 +32,8 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
 RUN addgroup --gid ${DOCKERGID} docker
 RUN usermod -aG docker jenkins
 
-USER 1000
-
 RUN echo 'IMAGE_VERSION=1' >> /etc/environment
 
-#ENTRYPOINT tail -f /dev/null
+USER 1000
+
+ENTRYPOINT tail -f /dev/null
